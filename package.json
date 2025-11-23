@@ -9,7 +9,9 @@
     "web": "expo start --web",
     "build": "expo export -p web",
     "build:web": "expo export -p web",
-    "vercel-build": "expo export -p web"
+    "vercel-build": "expo export -p web",
+    "deploy": "vercel",
+    "deploy:prod": "vercel --prod"
   },
   "dependencies": {
     "expo": "^54.0.25",
@@ -24,7 +26,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
-    "babel-preset-expo": "~11.0.0"
+    "babel-preset-expo": "~11.0.0",
+    "vercel": "^48.10.10"
   },
   "private": true
 }

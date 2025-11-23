@@ -12,3 +12,4 @@ web-build/
 dist/
 .DS_Store
 
+.vercel

@@ -4,7 +4,7 @@
 
 The 404 error happens because:
 1. **Vercel doesn't know how to build Expo web apps** by default
-2. **The build output directory** needs to be specified
+2. **The build output directory** needs to be specified (Expo exports to `dist`, not `web-build`)
 3. **Routing configuration** is needed for single-page apps
 
 ## ✅ Solution: I've Added Configuration
@@ -34,8 +34,8 @@ I've created a `vercel.json` file that tells Vercel:
    - Vercel should auto-detect the `vercel.json` file
    - If not, manually set:
      - **Framework Preset**: Other
-     - **Build Command**: `npx expo export -p web`
-     - **Output Directory**: `web-build`
+     - **Build Command**: `npm run vercel-build` (or `npx expo export -p web`)
+     - **Output Directory**: `dist` (Expo exports to `dist` by default)
      - **Install Command**: `npm install`
 
 4. **Deploy!**
@@ -93,14 +93,15 @@ Added build scripts:
    - Check the build logs for errors
 
 2. **Verify Build Output**
-   - The build should create a `web-build` folder
+   - The build should create a `dist` folder
    - It should contain `index.html` and other assets
+   - Check: `ls dist/` should show `index.html` and `_expo` folder
 
 3. **Check Vercel Settings**
    - Go to Settings → General
    - Verify:
-     - Build Command: `npx expo export -p web`
-     - Output Directory: `web-build`
+     - Build Command: `npm run vercel-build` (or `npx expo export -p web`)
+     - Output Directory: `dist`
      - Install Command: `npm install`
 
 4. **Clear Cache and Redeploy**
@@ -119,8 +120,9 @@ Added build scripts:
 - Check that `node_modules` isn't in `.gitignore` incorrectly
 
 **Error: "Build output not found"**
-- Check that `web-build` directory is being created
+- Check that `dist` directory is being created (Expo exports to `dist` by default)
 - Verify the build command is correct
+- Make sure `outputDirectory` in `vercel.json` is set to `dist`
 
 ### App Loads But Shows Blank Page?
 
